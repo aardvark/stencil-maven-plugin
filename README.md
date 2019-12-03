@@ -37,8 +37,8 @@ You need to explicitly provide stencil and clojure dependencies.
 
 ## Using maven properties in templates
 
-To use maven property in a template you need to escape `.` (dot) symbols from the template
-variable name. For example, in the template:
+To use maven property in a template you need to replace `.` (dot) symbols to `_`
+(underscore) in the template variable name. For example, in the template:
 
 `maven.compiler.source is {{ maven_compiler_source }}`
 
