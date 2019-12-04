@@ -1,7 +1,7 @@
 <project>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>net.muhanga</groupId>
+    <groupId>net.fiendishplatypus</groupId>
     <artifactId>stencil-maven-plugin-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
@@ -74,7 +74,7 @@
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <groupId>net.muhanga</groupId>
+                    <groupId>net.fiendishplatypus</groupId>
                     <artifactId>stencil-maven-plugin</artifactId>
                     <version>0.0.1-SNAPSHOT</version>
                 </plugin>

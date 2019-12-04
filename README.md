@@ -3,10 +3,12 @@
 Maven plugin wrapper over clojure [stencil](https://github.com/davidsantiago/stencil) library.
 
 ## Plugin configuration
+
+### Build declaration example
 Configuration example:
 ```
 <plugin>
-    <groupId>net.muhanga</groupId>
+    <groupId>net.fiendishplatypus</groupId>
     <artifactId>stencil-maven-plugin</artifactId>
     <dependencies>
         <dependency>
@@ -27,7 +29,9 @@ Configuration example:
     </configuration>
 </plugin>
 ```
-You need to explicitly provide stencil and clojure dependencies.
+You need to explicitly provide `dependencies` on clojure and stencil.
+
+### Configuration parameters
 
 `configuration/template` - [Mustache](https://mustache.github.io/) template file.
 
@@ -48,5 +52,5 @@ Variables defined in `configuration/context` file take precedence over maven pro
 
 ## Goals
 
-`stencil:renderFile` default goal. Processes template file using context from context
-file and writes output to the output file.
+`renderFile` default goal. Template file using context from context
+file and writes output to the output.

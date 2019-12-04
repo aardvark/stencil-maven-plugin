@@ -3,7 +3,7 @@
 
     <parent>
         <artifactId>stencil-maven-plugin-parent</artifactId>
-        <groupId>net.muhanga</groupId>
+        <groupId>net.fiendishplatypus</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 

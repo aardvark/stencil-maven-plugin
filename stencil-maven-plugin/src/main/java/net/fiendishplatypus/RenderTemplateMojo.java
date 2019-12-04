@@ -1,4 +1,4 @@
-package net.muhanga;
+package net.fiendishplatypus;
 
 
 import clojure.java.api.Clojure;
