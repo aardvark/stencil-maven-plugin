@@ -3,12 +3,12 @@
 
     <groupId>net.fiendishplatypus</groupId>
     <artifactId>stencil-maven-plugin</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>
 
     <scm>
         <connection>scm:git:https://github.com/aardvark/stencil-maven-plugin.git</connection>
-      <tag>0.0.1</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <properties>
@@ -85,7 +85,7 @@
                 <plugin>
                     <groupId>net.fiendishplatypus</groupId>
                     <artifactId>stencil-maven-plugin</artifactId>
-                    <version>0.0.1</version>
+                    <version>0.0.2-SNAPSHOT</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
