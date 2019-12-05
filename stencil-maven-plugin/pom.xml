@@ -1,20 +1,113 @@
 <project>
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <artifactId>stencil-maven-plugin-parent</artifactId>
-        <groupId>net.fiendishplatypus</groupId>
-        <version>0.0.1-SNAPSHOT</version>
-    </parent>
-
+    <groupId>net.fiendishplatypus</groupId>
     <artifactId>stencil-maven-plugin</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>
 
+    <scm>
+        <connection>scm:git:https://github.com/aardvark/stencil-maven-plugin.git</connection>
+    </scm>
+
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+
+        <version.maven-plugin-api>3.0</version.maven-plugin-api>
+        <version.maven-plugin-annotations>3.4</version.maven-plugin-annotations>
+
+        <version.maven-core>3.6.3</version.maven-core>
+        <version.stencil>0.5.0</version.stencil>
+
     </properties>
+
+    <repositories>
+        <repository>
+            <id>central</id>
+            <url>https://repo.maven.apache.org/maven2/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+        <repository>
+            <id>clojars</id>
+            <url>https://repo.clojars.org/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+        <repository>
+            <id>github</id>
+            <name>GitHub aardvark Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/aardvark/stencil-maven-plugin</url>
+        </repository>
+    </repositories>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.maven</groupId>
+                <artifactId>maven-plugin-api</artifactId>
+                <version>${version.maven-plugin-api}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.maven.plugin-tools</groupId>
+                <artifactId>maven-plugin-annotations</artifactId>
+                <version>${version.maven-plugin-annotations}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.maven</groupId>
+                <artifactId>maven-core</artifactId>
+                <version>${version.maven-core}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>stencil</groupId>
+                <artifactId>stencil</artifactId>
+                <version>${version.stencil}</version>
+                <scope>provided</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>net.fiendishplatypus</groupId>
+                    <artifactId>stencil-maven-plugin</artifactId>
+                    <version>0.0.1-SNAPSHOT</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-plugin-plugin</artifactId>
+                    <version>3.6.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>2.5.3</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <configuration>
+                    <tagNameFormat>@{project.version}</tagNameFormat>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <dependencies>
         <dependency>
@@ -32,8 +125,8 @@
         <dependency>
             <groupId>stencil</groupId>
             <artifactId>stencil</artifactId>
-            <version>0.5.0</version>
         </dependency>
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
