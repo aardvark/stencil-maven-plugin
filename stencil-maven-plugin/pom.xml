@@ -1,14 +1,15 @@
-<project>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>net.fiendishplatypus</groupId>
     <artifactId>stencil-maven-plugin</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <packaging>maven-plugin</packaging>
 
     <scm>
         <connection>scm:git:https://github.com/aardvark/stencil-maven-plugin.git</connection>
-    </scm>
+      <tag>0.0.1</tag>
+  </scm>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -84,7 +85,7 @@
                 <plugin>
                     <groupId>net.fiendishplatypus</groupId>
                     <artifactId>stencil-maven-plugin</artifactId>
-                    <version>0.0.1-SNAPSHOT</version>
+                    <version>0.0.1</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
