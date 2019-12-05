@@ -34,9 +34,13 @@
                     </dependency>
                 </dependencies>
                 <configuration>
-                    <template>README.md.tpl</template>
-                    <context>README.md.ctx</context>
-                    <output>README.md</output>
+                    <renderFiles>
+                        <renderFile>
+                            <template>README.md.tpl</template>
+                            <context>README.md.ctx</context>
+                            <output>README.md</output>
+                        </renderFile>
+                    </renderFiles>
                 </configuration>
             </plugin>
         </plugins>

@@ -1,3 +1,1 @@
-{
-"maven_compiler_target" "overriden"
-}
+{:maven_compiler_target "overriden"}

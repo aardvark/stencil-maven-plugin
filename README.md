@@ -23,19 +23,25 @@ Configuration example:
         </dependency>
     </dependencies>
     <configuration>
-        <template>README.md.tpl</template>
-        <context>README.md.ctx</context>
-        <output>README.md</output>
+        <renderFiles>
+            <renderFile>
+                <template>README.md.tpl</template>
+                <context>README.md.ctx</context>
+                <output>README.md</output>
+            </renderFile>
+        </renderFiles>
     </configuration>
 </plugin>
 ```
-You need to explicitly provide `dependencies` on clojure and stencil.
+You need to explicitly provide `dependencies` for both clojure and stencil.
+Template, context and output files configured inside `renderFile` tags.
 
 ### Configuration parameters
 
 `configuration/template` - [Mustache](https://mustache.github.io/) template file.
 
-`configuration/context` - context file. EDN map.
+`configuration/context` - context file. EDN map where keys are template variables
+and values are template values. Both strings and keywords can be used for keys.
 
 `configuration/output` - output file
 
@@ -52,5 +58,9 @@ Variables defined in `configuration/context` file take precedence over maven pro
 
 ## Goals
 
-`renderFile` default goal. Template file using context from context
-file and writes output to the output.
+`renderFile` create the file based on a `template`. Uses context from `context`
+file and writes output to the `output`.
+
+# License
+
+Licensed under EPL 1.0

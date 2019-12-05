@@ -14,58 +14,54 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.StandardOpenOption;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import java.util.function.BiConsumer;
 
-/**
- * Says "Hi" to the user.
- */
 @Mojo(name = "renderFile")
 public class RenderTemplateMojo extends AbstractMojo {
 
   @Parameter(defaultValue = "${project}", readonly = true)
   private MavenProject project;
 
-  @Parameter(property = "stencil.template")
-  private File template;
-
-  @Parameter(property = "stencil.context")
-  private File context;
-
-  @Parameter(property = "stencil.output")
-  private File output;
+  @Parameter(property = "renderFiles")
+  private List<RenderFile> renderFiles;
 
   public void execute() throws MojoExecutionException {
-    info("Using template file: " + template.getPath());
-    info("Using context file: " + context.getPath());
-    info("Using output file: " + output.getPath());
-
-    String propString = propertiesMap(project.getProperties());
-
-    String contextString = loadTemplateContextToString(context);
-    debug("Template context: " + contextString);
-    Object contextMap = Clojure.read(contextString);
-
-    debug("Maven properties: " + propString);
-    Object propertyMap = Clojure.read(propString);
-
-    Object mergedMap = Clojure.var("clojure.core", "merge").invoke(propertyMap, contextMap);
-    debug("Merged[properties + context]: " + mergedMap.toString());
-
     IFn require = Clojure.var("clojure.core", "require");
     require.invoke(Clojure.read("stencil.core"));
 
     IFn renderString = Clojure.var("stencil.core", "render-string");
 
-    String template = loadTemplateToString(this.template);
+    for (RenderFile renderFile : renderFiles) {
+      File template = renderFile.getTemplate();
+      File context = renderFile.getContext();
+      File output = renderFile.getOutput();
+      info("Using template file: " + template.getPath());
+      info("Using context file: " + context.getPath());
+      info("Using output file: " + output.getPath());
 
-    String res = (String) renderString.invoke(template, mergedMap);
+      String propString = propertiesMap(project.getProperties());
 
-    try {
-      Files.writeString(output.toPath(), res, StandardOpenOption.CREATE);
-    } catch (IOException e) {
-      throw new MojoExecutionException("Can't create output file due to exception.", e);
+      String contextString = loadTemplateContextToString(context);
+      debug("Template context: " + contextString);
+      Object contextMap = Clojure.read(contextString);
+
+      debug("Maven properties: " + propString);
+      Object propertyMap = Clojure.read(propString);
+
+      Object mergedMap = Clojure.var("clojure.core", "merge").invoke(propertyMap, contextMap);
+      debug("Merged[properties + context]: " + mergedMap.toString());
+
+      String templateString = loadTemplateToString(template);
+
+      String res = (String) renderString.invoke(templateString, mergedMap);
+
+      try {
+        Files.writeString(output.toPath(), res, StandardOpenOption.CREATE);
+      } catch (IOException e) {
+        throw new MojoExecutionException("Can't create output file due to exception.", e);
+      }
     }
   }
 
@@ -74,7 +70,7 @@ public class RenderTemplateMojo extends AbstractMojo {
     try {
       template = Files.readString(templateFile.toPath());
     } catch (NoSuchFileException e) {
-      info("Template file declared [" + this.template.getPath() + "], but not found. Output will be empty file.");
+      info("Template file declared [" + templateFile.getPath() + "], but not found. Output will be empty file.");
     } catch (IOException e) {
       throw new MojoExecutionException("Can't render template file due to exception.", e);
     }
@@ -86,7 +82,7 @@ public class RenderTemplateMojo extends AbstractMojo {
     try {
       contextString = Files.readString(ctx.toPath());
     } catch (NoSuchFileException e) {
-      info("Context file declared [" + ctx.getPath() + "], but not found. Will use empty context for template.");
+      info("Context file declared [" + ctx.getPath() + "], but not found. Will use empty context for a template.");
       contextString = "{}";
     } catch (Exception e) {
       throw new MojoExecutionException("Can't load context file due to exception.", e);
@@ -116,10 +112,6 @@ public class RenderTemplateMojo extends AbstractMojo {
 
   private void debug(String s) {
     getLog().debug(s);
-  }
-
-  private BiConsumer<Object, Object> logPair() {
-    return (o, o2) -> getLog().info(o + ": " + o2);
   }
 
 }

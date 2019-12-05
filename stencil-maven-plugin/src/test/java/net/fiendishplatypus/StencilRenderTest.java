@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class GreetingMojoTest {
+class StencilRenderTest {
   @Test
   public void test_stencil_template_call() {
     IFn require = Clojure.var("clojure.core", "require");
