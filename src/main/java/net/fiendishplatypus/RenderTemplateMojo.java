@@ -51,7 +51,10 @@ public class RenderTemplateMojo extends AbstractMojo {
       info("Using context file: " + context.getPath());
       info("Using output file: " + output.getPath());
 
-      String propString = propertiesMap(project.getProperties());
+      Properties properties = project.getProperties();
+      properties.put("project.version", project.getVersion());
+
+      String propString = propertiesMap(properties);
 
       String contextString = loadTemplateContextToString(context);
       debug("Template context: " + contextString);

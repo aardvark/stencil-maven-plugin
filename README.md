@@ -10,7 +10,7 @@ Configuration example:
 <plugin>
     <groupId>net.fiendishplatypus</groupId>
     <artifactId>stencil-maven-plugin</artifactId>
-    <version></version>
+    <version>0.0.3-SNAPSHOT</version>
     <dependencies>
         <dependency>
             <groupId>org.clojure</groupId>

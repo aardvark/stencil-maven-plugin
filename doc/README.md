@@ -10,7 +10,7 @@ Configuration example:
 <plugin>
     <groupId>net.fiendishplatypus</groupId>
     <artifactId>stencil-maven-plugin</artifactId>
-    <version>{{version}}</version>
+    <version>{{project_version}}</version>
     <dependencies>
         <dependency>
             <groupId>org.clojure</groupId>
@@ -58,6 +58,8 @@ To use maven property in a template you need to replace `.` (dot) symbols to `_`
 template variable `maven_compiler_source` will take value from maven property `maven.compiler.source`
 
 Variables defined in `configuration/context` file take precedence over maven properties.
+
+See `doc/README.md` which is used to create this readme using this plugin. 
 
 ## Goals
 
