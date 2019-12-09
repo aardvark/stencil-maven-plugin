@@ -67,8 +67,19 @@ See `doc/README.md` which is used to create this readme using this plugin.
 file and writes output to the `output`.
 
 # How to release
+Simple release: 
 
 `mvn release:prepare --batch-mode -DpushChanges=false`
+
+Install the newly released version locally for 
+`mvn install`
+
+Regenerate README.md:
+
+`mvn stencil:renderFile`
+
+Deploy to GitHub package:
+`mvn deploy`
 
 # License
 

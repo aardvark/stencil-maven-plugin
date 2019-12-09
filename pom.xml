@@ -14,12 +14,12 @@
 
     <groupId>net.fiendishplatypus</groupId>
     <artifactId>stencil-maven-plugin</artifactId>
-    <version>0.0.3-SNAPSHOT</version>
+    <version>0.0.3</version>
     <packaging>maven-plugin</packaging>
 
     <scm>
         <connection>scm:git:https://github.com/aardvark/stencil-maven-plugin.git</connection>
-      <tag>HEAD</tag>
+      <tag>0.0.3</tag>
   </scm>
 
     <properties>
