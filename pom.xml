@@ -154,7 +154,7 @@
                 <configuration>
                     <renderFiles>
                         <renderFile>
-                            <template>doc/README.md.tpl</template>
+                            <template>doc/README.md</template>
                             <context>doc/README.md.ctx.edn</context>
                             <output>README.md</output>
                         </renderFile>

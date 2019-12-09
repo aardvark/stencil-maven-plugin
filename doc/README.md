@@ -66,6 +66,10 @@ See `doc/README.md` which is used to create this readme using this plugin.
 `renderFile` create the file based on a `template`. Uses context from `context`
 file and writes output to the `output`.
 
+# How to release
+
+`mvn release:prepare --batch-mode -DpushChanges=false`
+
 # License
 
 Licensed under EPL 2.0
