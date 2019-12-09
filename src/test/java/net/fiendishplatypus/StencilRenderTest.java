@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 2019 -- 2020 Evgeniy A. Latuhin [and others]
+ * Copyright (c) 2019 - 2020 Evgeniy A. Latuhin [and others]
  *
  * This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License 2.0

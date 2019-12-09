@@ -10,17 +10,17 @@ Configuration example:
 <plugin>
     <groupId>net.fiendishplatypus</groupId>
     <artifactId>stencil-maven-plugin</artifactId>
-    <version></version>
+    <version>{{version}}</version>
     <dependencies>
         <dependency>
             <groupId>org.clojure</groupId>
             <artifactId>clojure</artifactId>
-            <version>1.10.0</version>
+            <version>{{version_clojure}}</version>
         </dependency>
         <dependency>
             <groupId>stencil</groupId>
             <artifactId>stencil</artifactId>
-            <version>0.5.0</version>
+            <version>{{version_stencil}}</version>
         </dependency>
     </dependencies>
     <configuration>
@@ -51,7 +51,9 @@ and values are template values. Both strings and keywords can be used for keys.
 To use maven property in a template you need to replace `.` (dot) symbols to `_`
 (underscore) in the template variable name. For example, in the template:
 
+{{=<% %>=}}
 `maven.compiler.source is {{ maven_compiler_source }}`
+<%={{ }}=%>
 
 template variable `maven_compiler_source` will take value from maven property `maven.compiler.source`
 
