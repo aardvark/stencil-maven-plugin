@@ -1,4 +1,6 @@
-# stencil-maven-plugin
+![bintray-version](https://img.shields.io/bintray/v/muhanga/stencil-maven-plugin/stencil-maven-plugin?style=flat-square)
+# stencil-maven-plugin 
+
 
 Maven plugin wrapper over clojure [stencil](https://github.com/davidsantiago/stencil) library.
 
