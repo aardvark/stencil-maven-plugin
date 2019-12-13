@@ -1,4 +1,4 @@
-![bintray-version](https://img.shields.io/bintray/v/muhanga/stencil-maven-plugin/stencil-maven-plugin?style=flat-square)
+[![bintray-version](https://img.shields.io/bintray/v/muhanga/stencil-maven-plugin/stencil-maven-plugin?style=flat-square)](https://bintray.com/muhanga/stencil-maven-plugin/stencil-maven-plugin/0.0.3)
 # stencil-maven-plugin 
 
 
