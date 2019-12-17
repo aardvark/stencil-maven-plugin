@@ -40,14 +40,19 @@ public class RenderTemplateMojo extends AbstractMojo {
   public void execute() throws MojoExecutionException {
     IFn require = Clojure.var("clojure.core", "require");
     require.invoke(Clojure.read("stencil.core"));
+    require.invoke(Clojure.read("stencil.loader"));
 
-    IFn renderString = Clojure.var("stencil.core", "render-string");
+    IFn registerTemplate = Clojure.var("stencil.loader", "register-template");
+    IFn render = Clojure.var("stencil.core", "render-file");
 
     for (RenderFile renderFile : renderFiles) {
       File template = renderFile.getTemplate();
       File context = renderFile.getContext();
       File output = renderFile.getOutput();
       info("Using template file: " + template.getPath());
+
+      registerTemplate.invoke(template.getPath(), loadTemplateToString(template));
+
       info("Using context file: " + context.getPath());
       info("Using output file: " + output.getPath());
 
@@ -66,9 +71,7 @@ public class RenderTemplateMojo extends AbstractMojo {
       Object mergedMap = Clojure.var("clojure.core", "merge").invoke(propertyMap, contextMap);
       debug("Merged[properties + context]: " + mergedMap.toString());
 
-      String templateString = loadTemplateToString(template);
-
-      String res = (String) renderString.invoke(templateString, mergedMap);
+      String res = (String) render.invoke(template.getPath(), mergedMap);
 
       try {
         Files.writeString(output.toPath(), res, StandardOpenOption.CREATE);

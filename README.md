@@ -13,7 +13,7 @@ Configuration example:
 <plugin>
     <groupId>net.fiendishplatypus</groupId>
     <artifactId>stencil-maven-plugin</artifactId>
-    <version>0.0.3</version>
+    <version>0.0.4-SNAPSHOT</version>
     <dependencies>
         <dependency>
             <groupId>org.clojure</groupId>
@@ -80,7 +80,7 @@ Regenerate README.md:
 `mvn stencil:renderFile`
 
 Deploy to GitHub package:
-`mvn deploy`
+`mvn deploy -Dmaven.wagon.http.pool=false `
 
 # License
 

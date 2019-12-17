@@ -29,4 +29,15 @@ class StencilRenderTest {
 
     assertEquals("test", templateRes);
   }
+
+  @Test
+  public void test_stencil_render_file_call(){
+    IFn require = Clojure.var("clojure.core", "require");
+    require.invoke(Clojure.read("stencil.core"));
+
+    IFn renderFile = Clojure.var("stencil.core", "render-file");
+    String templateRes = (String) renderFile.invoke("test.tpl", Clojure.read("{:a \"test\"}"));
+
+    assertEquals("test", templateRes);
+  }
 }
