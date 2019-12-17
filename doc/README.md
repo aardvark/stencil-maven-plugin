@@ -79,7 +79,7 @@ Regenerate README.md:
 `mvn stencil:renderFile`
 
 Deploy to GitHub package:
-`mvn deploy`
+`mvn deploy -Dmaven.wagon.http.pool=false `
 
 # License
 
