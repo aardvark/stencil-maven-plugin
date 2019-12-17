@@ -14,12 +14,12 @@
 
     <groupId>net.fiendishplatypus</groupId>
     <artifactId>stencil-maven-plugin</artifactId>
-    <version>0.0.3</version>
+    <version>0.0.4-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>
 
     <scm>
         <connection>scm:git:https://github.com/aardvark/stencil-maven-plugin.git</connection>
-      <tag>0.0.3</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <properties>
@@ -68,9 +68,9 @@
 
     <distributionManagement>
         <repository>
-            <id>github</id>
-            <name>GitHub aardvark Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/aardvark/stencil-maven-plugin</url>
+            <id>bintray-muhanga-stencil-maven-plugin</id>
+            <name>muhanga-stencil-maven-plugin</name>
+            <url>https://api.bintray.com/maven/muhanga/stencil-maven-plugin/stencil-maven-plugin/;publish=1</url>
         </repository>
     </distributionManagement>
 
@@ -126,6 +126,11 @@
                     <artifactId>maven-release-plugin</artifactId>
                     <version>2.5.3</version>
                 </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>3.2.0</version>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
@@ -160,6 +165,19 @@
                         </renderFile>
                     </renderFiles>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
