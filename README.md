@@ -13,7 +13,7 @@ Configuration example:
 <plugin>
     <groupId>net.fiendishplatypus</groupId>
     <artifactId>stencil-maven-plugin</artifactId>
-    <version>0.0.4-SNAPSHOT</version>
+    <version>0.0.4</version>
     <dependencies>
         <dependency>
             <groupId>org.clojure</groupId>
