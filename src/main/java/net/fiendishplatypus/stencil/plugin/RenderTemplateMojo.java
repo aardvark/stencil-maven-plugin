@@ -9,10 +9,11 @@
  *
  */
 
-package net.fiendishplatypus;
+package net.fiendishplatypus.stencil.plugin;
 
 import clojure.java.api.Clojure;
 import clojure.lang.IFn;
+import net.fiendishplatypus.stencil.plugin.RenderFile;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.Mojo;
@@ -26,6 +27,7 @@ import java.nio.file.NoSuchFileException;
 import java.nio.file.StandardOpenOption;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Properties;
 
 @Mojo(name = "renderFile")
@@ -47,13 +49,13 @@ public class RenderTemplateMojo extends AbstractMojo {
 
     for (RenderFile renderFile : renderFiles) {
       File template = renderFile.getTemplate();
-      File context = renderFile.getContext();
+      Optional<File> context = renderFile.getContext();
       File output = renderFile.getOutput();
       info("Using template file: " + template.getPath());
 
       registerTemplate.invoke(template.getPath(), loadTemplateToString(template));
 
-      info("Using context file: " + context.getPath());
+      info("Using context file: " + context.map(File::getPath).orElse("none"));
       info("Using output file: " + output.getPath());
 
       Properties properties = project.getProperties();
@@ -61,7 +63,13 @@ public class RenderTemplateMojo extends AbstractMojo {
 
       String propString = propertiesMap(properties);
 
-      String contextString = loadTemplateContextToString(context);
+      String contextString;
+      if (context.isPresent()) {
+        contextString = loadTemplateContextToString(context.get());
+      } else {
+        contextString = "{}";
+      }
+
       debug("Template context: " + contextString);
       Object contextMap = Clojure.read(contextString);
 
@@ -94,6 +102,10 @@ public class RenderTemplateMojo extends AbstractMojo {
   }
 
   private String loadTemplateContextToString(File ctx) throws MojoExecutionException {
+    if (ctx == null) {
+      return "{}";
+    }
+
     String contextString;
     try {
       contextString = Files.readString(ctx.toPath());

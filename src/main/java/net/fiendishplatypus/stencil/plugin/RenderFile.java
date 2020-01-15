@@ -10,11 +10,12 @@
  *
  */
 
-package net.fiendishplatypus;
+package net.fiendishplatypus.stencil.plugin;
 
 import org.apache.maven.plugins.annotations.Parameter;
 
 import java.io.File;
+import java.util.Optional;
 
 public class RenderFile {
   @Parameter(property = "stencil.template")
@@ -30,8 +31,8 @@ public class RenderFile {
     return template;
   }
 
-  public File getContext() {
-    return context;
+  public Optional<File> getContext() {
+    return Optional.ofNullable(context);
   }
 
   public File getOutput() {

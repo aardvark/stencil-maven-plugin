@@ -40,6 +40,9 @@ Configuration example:
 You need to explicitly provide `dependencies` for both clojure and stencil.
 Template, context and output files configured inside `renderFile` tags.
 
+`<context>` in `<renderFile>` is optional. If context isn't declared only
+maven properties will be present in template context. 
+
 ### Configuration parameters
 
 `configuration/template` - [Mustache](https://mustache.github.io/) template file.
